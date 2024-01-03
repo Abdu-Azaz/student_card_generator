@@ -27,10 +27,11 @@ document
         $(".card_fname_latin").html(student.fname);
         $(".card_lname_latin").html(student.lname);
         $(".card_cne").html(student.cne);
-        $(".card_case_number").html(student.case_number);
+        $(".card_case_number").html(student.n_dossier);
         $(".card_cin").html(student.cin);
-        $(".card_diploma").html(student.diploma);
-
+        $(".card_diploma").html(student.filiere);
+        $('#card_photo').attr('src', `/images_etudiants/${student.cne}.png`)
+        console.log(`set src to ${student.cne}.png`)
         // Format and set the date
         const formattedDate = student.date.split("-").reverse().join("/");
         if (formattedDate) $(".card_date").html(formattedDate);
@@ -65,11 +66,11 @@ document
           }
         );
       }
-      window.open(pdf.output("bloburl", { filename: "myFileName.pdf" }));
+      window.open(pdf.output("bloburl"));
     };
 
     reader.onerror = function (ex) {
-      console.error(ex);
+      console.error(`excelError ${ex}`);
     };
 
     // Read the file as a binary string
