@@ -1,8 +1,10 @@
 $(document).ready(function () {
   $("#form").on("submit", function (e) {
+    // Prevent default form submission behavior
     e.preventDefault();
 
-    var formData = {
+    // Collect form data
+    const formData = {
       fname: $("#fname").val(),
       lname: $("#lname").val(),
       fname_ar: $("#fname_ar").val(),
@@ -14,23 +16,25 @@ $(document).ready(function () {
       photo: $("#photo").val(),
       date: $("#date").val(),
     };
+
+    // Update UI elements
     $("#modalForm").css("display", "none");
     $(".modal-backdrop").remove();
-    // $("#card_photo").attr("src", "images/softskills.png");x
     $(".card_fname").html(formData.fname_ar);
     $(".card_lname").html(formData.lname_ar);
     $(".card_fname_latin").html(formData.fname);
     $(".card_lname_latin").html(formData.lname);
-
-    $(".card_date").html(
-      `${new Date().getMonth() + 1}/${new Date().getFullYear()}`
-    );
     $(".card_cne").html(formData.cne);
     $(".card_case_number").html(formData.case_number);
     $(".card_cin").html(formData.cin);
     $(".card_diploma").html(formData.diploma);
-    $(".card_date").html(formData.date.split("-").reverse().join("/"));
-    qrcode.clear(); // Clears the QR code
+
+    // Format and set the date
+    const formattedDate = formData.date.split("-").reverse().join("/");
+    if(formattedDate) $(".card_date").html(formattedDate);
+
+    // Generate QR code
+    qrcode.clear(); // Clears the existing QR code
     qrcode.makeCode(formData.cne); // Generates a new QR code with the new text
   });
 });
@@ -41,7 +45,6 @@ $("#photo").on("change", function (e) {
 
   reader.onload = function (event) {
     const fileContent = event.target.result;
-    // document.getElementById("card_photo").src = fileContent;
     $("#card_photo").attr("src", fileContent);
   };
   reader.readAsDataURL(file);

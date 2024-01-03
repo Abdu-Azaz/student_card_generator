@@ -16,28 +16,35 @@ body{
 .container-card {
   width: 85.6mm;
   height: 53.98mm;
-  border: 1px solid black;
+  border: 1px solid #333;
+  outline: 0;
   margin-top: 150px;
   transform: scale(2.2);
+  /* background: url('images/zellij.jpg')  center center/cover; */
 }
 
 .logo {
   height: 10mm;
-  background-color: rgb(29, 14, 238);
+  background-color:#0d6efd /*rgb(29, 14, 238)*/;
   border-bottom: 3px solid orange;
 }
-
+.blue{
+  color:rgb(29, 14, 238)
+}
 .logo img {
-  height: 9mm;
+  /* margin-top: 2px; */
+  height: 9.3mm;
 }
  
 #card_photo {
-  border: 1px solid orange;
-  border-top: 0;
+  border: 1px solid rgb(29, 14, 238);
+  /* border: 1px solid #0d6efd; */
   width: 25mm;
   height: 25mm;
   object-fit: fill;
   position: absolute;
+  border-radius: 3px;
+
  }
 
 .shiftend {
@@ -53,4 +60,11 @@ label{
 #card_footer{
   height:40px;
 }
- 
+#qrcode img{
+  padding: 3px;
+  border:1px solid black;
+  border-radius: 3px;
+}
+fieldset, legend {
+  all: revert;
+}
